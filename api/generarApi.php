@@ -1,17 +1,18 @@
 <?php
 require_once "../libs/sesion.php";
 require_once "../libs/database.php";
-//instancia de la sesión
-$sesion = Sesion::getInstance();
+
+// obtenemos la instancia 
+$sesion = sesion::getInstance();
 
 // comprobar si hay una sesión activa
 if (!$sesion->checkActiveSession()) {
     $sesion->redirect("../index.php");
 }
-$db = Database::getInstance();
-//cogemos api key usuario
-$idUsu = $sesion->getUsuario()->getIdUsu();
-$api = $db->runQuery("SELECT api_key FROM usuarios WHERE idUsu='$idUsu' ;")->fetchColumn();
+$db = database::getInstance();
+//recogemos la api key 
+$idUsuario = $sesion->getUsuario()->getIdUsu();
+$api = $db->runQuery("SELECT api_key FROM usuarios WHERE idUsu='$idUsuario' ;")->fetchColumn();
 //generar api
 
 if (empty($api))
@@ -20,7 +21,7 @@ if (empty($api))
     $sql = "UPDATE usuarios SET api_key=? WHERE idUsu=?";
     $idUsu = $sesion->getUsuario()->getIdUsu();
     $db->runQuery($sql, [$api,$idUsu])
-        or die("No se ha podido asignar la API KEY.");
+        or die("Ha habido algun error al generar su API KEY.");
 }
 
 
@@ -38,7 +39,7 @@ if (empty($api))
 </head>
 
 <body>
-    <h1>Hemos generado tu Apy Key con éxito</h1>
+    <h1>Generador de API KEY</h1>
     Tu API KEY es:
     <?php
         echo $api;
