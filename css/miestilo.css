@@ -1,0 +1,29 @@
+
+
+.body {
+    margin: 0 auto;
+    padding: 0 auto;
+    background-color: black;
+  
+  }
+
+  h4{
+      color: pink;
+  } 
+
+.col-form-label {
+    color: pink;
+
+  }
+
+  .footer{
+    text-align: center;
+    color:white;
+  }
+
+  .navbar-text{
+    text-align: center;
+    color: pink;
+  }
+  
+ 
