@@ -63,8 +63,10 @@ class database
 		return $this->result->fetchObject($cls);
 	}
 
-	public function __wakeup()
-	{
-		$this->connect();
+public function __wakeup(){
+
+			$this->connect() ;
+		}
 	}
-}
+
+?>
