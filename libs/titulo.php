@@ -64,7 +64,7 @@ class titulo
     
     public function getdescripcion()
     {
-        return $this->nombre;
+        return $this->descripcion;
     }
     public function setdescripcion($descripcion)
     {

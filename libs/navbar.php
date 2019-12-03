@@ -74,7 +74,7 @@ $usr = $ses->getUsuario() ;
 
 			
 			<div class="navbar-text text-primary">
-				Has iniciado sesión como: <?=$usr?> 
+				Usuario: <?=$usr?> 
 			</div>
 
 		</div>	<!-- end-navbar -->

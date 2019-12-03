@@ -34,7 +34,7 @@ require_once "libs/navbar.php";
 	// determinamos el punto de partida para la consulta
 	$ini = ($pag - 1) * MAX_ITEM;
 
-	// buscamos las series correspondientes a la página actual
+	// buscamos los juegos correspondientes a la página actual
 	if (!$db->runQuery("SELECT * FROM titulo ORDER BY nombre LIMIT $ini, " . MAX_ITEM . ";")) :
 		mostrarAlerta("No hay videojuegos en la base de datos", "danger");
 	else :
@@ -50,6 +50,7 @@ require_once "libs/navbar.php";
 						<div class="card-body text-center">
 							<!--<a href="info.php?id=<?= $item->getIdVid() ?>"-->
 							<img src="<?= $item->getimg() ?>" class="card-img-top" />
+							<a href="info.php?id=<?= $item->getIdVid() ?>">
 							<h6 class="card-title text-primary"><?= $item->getnombre() ?></h6>
 							<h6 class="card-title text-light"><?= $item->getgenero() ?></h6>
 							</a>
@@ -65,7 +66,7 @@ require_once "libs/navbar.php";
 				echo "</div>";
 			} while ($item);
 
-			// añadimos una paginación sencilla
+			//paginación sencilla
 			$ant_cond = ($pag == 1);
 			$sig_cond = (($pag * MAX_ITEM) >= $total);
 
@@ -75,12 +76,11 @@ require_once "libs/navbar.php";
 		<nav aria-label="paginación">
 			<ul class="pagination justify-content-center">
 
-				<!-- anterior -->
+		
 				<li class="page-item <?= $ant_cond ? "disabled" : "" ?>">
 					<a class="page-link" href="<?= $ant_cond ? "#" : "main.php?p=" . ($pag - 1) ?>">Atrás</a>
 				</li>
 
-				<!-- siguiente -->
 				<li class="page-item <?= $sig_cond ? "disabled" : "" ?>">
 					<a class="page-link" href="<?= $sig_cond ? "#" : "main.php?p=" . ($pag + 1) ?>">Siguiente</a>
 				</li>

@@ -1,3 +1,7 @@
+<!--
+    GENERA API KEY PARA CADA USUARIO
+ -->
+
 <?php
 require_once "../libs/sesion.php";
 require_once "../libs/database.php";
@@ -12,15 +16,14 @@ if (!$sesion->checkActiveSession()) {
 $db = database::getInstance();
 //recogemos la api key 
 $idUsuario = $sesion->getUsuario()->getIdUsu();
-$api = $db->runQuery("SELECT api_key FROM usuarios WHERE idUsu='$idUsuario' ;")->fetchColumn();
+$apiKEY = $db->runQuery("SELECT api_key FROM usuarios WHERE idUsu='$idUsuario' ;")->fetchColumn();
 //generar api
 
-if (empty($api))
-{
-    $api = md5($sesion->getUsuario()->getEmail() . time());
+if (empty($api)) {
+    $apiKEY = md5($sesion->getUsuario()->getEmail() . time());
     $sql = "UPDATE usuarios SET api_key=? WHERE idUsu=?";
     $idUsu = $sesion->getUsuario()->getIdUsu();
-    $db->runQuery($sql, [$api,$idUsu])
+    $db->runQuery($sql, [$apiKEY, $idUsu])
         or die("Ha habido algun error al generar su API KEY.");
 }
 
@@ -39,14 +42,14 @@ if (empty($api))
 </head>
 
 <body>
-    <h1>Generador de API KEY</h1>
-    Tu API KEY es:
+    <h1>Gamers</h1>`+`+
+    <h2>Generador de Apy Key</h2>
     <?php
-        echo $api;
+    echo $apiKEY;
     ?>
-    
 
-    
+
+
 </body>
 
 </html>

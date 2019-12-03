@@ -3,8 +3,6 @@
 include_once ("../libs/database.php");
 
 
-// This is the API to possibility show the user list, and show a specific user by action.
-
 function get_titulo()
 {
     $db = database::getInstance();
